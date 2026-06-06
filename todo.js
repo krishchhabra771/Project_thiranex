@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+4document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 1. STATE CONFIGURATION & DATA STORAGE PERSISTENCE
   // ==========================================================================
