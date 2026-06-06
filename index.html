@@ -58,6 +58,42 @@
         </article>
       </div>
     </section>
+        <!-- Task Management Section (Task 3 Addition) -->
+    <section id="todo-section" aria-labelledby="todo-heading" class="todo-section">
+      <h2 id="todo-heading">Project Task Workspace</h2>
+      <p class="section-desc">Manage project milestones. Your updates persist automatically in local storage.</p>
+
+      <!-- Form to Create Tasks -->
+      <form id="todo-form" class="todo-form" aria-label="Create a new task">
+        <div class="form-group-row">
+          <div class="form-group-fill">
+            <label for="todo-input" class="sr-only">Task Description</label>
+            <input 
+              type="text" 
+              id="todo-input" 
+              placeholder="e.g., Run Lighthouse accessibility audits..." 
+              required
+              aria-required="true">
+          </div>
+          <button type="submit" aria-label="Add task to your workspace">Add Task</button>
+        </div>
+      </form>
+
+      <!-- Advanced Filter Group -->
+      <div class="filter-wrapper">
+        <div class="filter-controls" role="group" aria-label="Filter tasks">
+          <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All Tasks</button>
+          <button type="button" class="filter-btn" data-filter="active" aria-pressed="false">Active</button>
+          <button type="button" class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
+        </div>
+        <!-- Accessibility Live Region for Screen Reader Announcements -->
+        <p id="todo-stats" class="todo-stats" aria-live="polite">0 active tasks remaining.</p>
+      </div>
+
+      <!-- Dynamic Destination Container for JavaScript Tasks -->
+      <ul id="todo-list" class="todo-list" aria-label="Current tasks workspace"></ul>
+    </section>
+
 
   </main>
 
@@ -65,6 +101,6 @@
   <footer class="site-footer">
     <p>&copy; 2026 Jane Doe. All rights reserved.</p>
   </footer>
-
+    <script src="todo.js" defer></script>
 </body>
 </html>
