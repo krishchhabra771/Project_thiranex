@@ -137,15 +137,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Form Submission Interception
-  todoForm.addEventListener('submit', (event) => {
-    event.preventDefault();
-    const entryValue = todoInput.value.trim();
-    if (entryValue === '') return;
+  // Ensure this form submission block looks EXACTLY like this
+todoForm.addEventListener('submit', (event) => {
+  // 1. THIS IS THE FIX: This line stops the form from posting to www.thiranex.in
+  event.preventDefault(); 
 
-    addTaskItem(entryValue);
-    todoInput.value = ''; // Flush layout element text context
-    todoInput.focus();    // Reset continuous keyboard focus safely
-  });
+  // 2. Local state logic handles the task addition locally instead
+  const entryValue = todoInput.value.trim();
+  if (entryValue === '') return;
+
+  addTaskItem(entryValue);
+  todoInput.value = ''; // Clear input field
+  todoInput.focus();    // Reset focus
+});
+
 
   // XSS Security Sanitiser: Converts literal element inputs into static strings
   function escapeHTML(string) {
