@@ -1,30 +1,80 @@
 /* ==========================================================================
-   TASK 1: ACCESSIBILITY & SEMANTIC BASE STYLES
+   1. VARIABLES & THEME PREFERENCES (Light Mode / Dark Mode)
    ========================================================================== */
+:root {
+  /* Dynamic Palette Tokens - Default Light Mode Layout */
+  --bg-color: #ffffff;
+  --bg-card: #f8f9fa;
+  --text-main: #1a1a1a;
+  --text-muted: #4a5568;
+  --color-accent: #2b6cb0;
+  --color-accent-hover: #1d4ed8;
+  --line-border: #e2e8f0;
+  --ring-focus: #2b6cb0;
 
-/* 1. Global Base Layout Rules */
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  line-height: 1.6;
-  color: #1a1a1a;
-  background-color: #ffffff;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  /* Global Layout Tokens */
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --box-radius: 8px;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* 2. Skip to Content Link (Hidden until keyboard users press TAB) */
+/* Automatic Dark Mode Toggle via System Settings */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --color-accent: #38bdf8;
+    --color-accent-hover: #7dd3fc;
+    --line-border: #334155;
+    --ring-focus: #38bdf8;
+  }
+}
+
+/* ==========================================================================
+   2. GLOBAL RESET & ARCHITECTURAL FOUNDATION
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-stack);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; /* Pushes site-footer down cleanly */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  flex-grow: 1; /* Maximizes frame depth */
+}
+
+/* ==========================================================================
+   3. ACCESSIBILITY OVERRIDES
+   ========================================================================== */
 .skip-link {
   position: absolute;
   top: -100px;
   left: 0;
-  background: #0056b3;
+  background: var(--color-accent);
   color: #ffffff;
   padding: 0.75rem 1.5rem;
   z-index: 999;
   text-decoration: none;
   font-weight: bold;
-  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: var(--box-radius);
   transition: top 0.2s ease;
 }
 
@@ -32,108 +82,204 @@ body {
   top: 0;
 }
 
-/* 3. WCAG AAA High-Visibility Keyboard Focus Indicator Rings */
 a:focus-visible, 
 button:focus-visible, 
 input:focus-visible, 
 textarea:focus-visible {
-  outline: 3px solid #0056b3;
+  outline: 3px solid var(--ring-focus);
   outline-offset: 3px;
 }
 
-/* 4. Semantic Element Structure Margins */
-header, 
-main, 
-footer, 
-section, 
-article {
-  margin-bottom: 2.5rem;
+/* ==========================================================================
+   4. LAYOUT COMPONENTS (Using Flexbox for Row Components)
+   ========================================================================== */
+.site-header {
+  border-bottom: 1px solid var(--line-border);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column; /* Mobile first stack view */
+  align-items: center;
+  gap: 1rem;
 }
 
-/* 5. Typography Formatting Hierarchy */
-h1 {
-  font-size: 2.5rem;
-  line-height: 1.2;
-  margin-bottom: 1rem;
+.logo a {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  text-decoration: none;
+  letter-spacing: -0.03em;
 }
 
-h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1.2rem;
-  border-bottom: 2px solid #e2e8f0;
-  padding-bottom: 0.5rem;
-}
-
-h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-}
-
-p {
-  margin-bottom: 1rem;
-}
-
-/* 6. Navigation Link Formatting */
-nav ul {
+.nav-links {
   list-style: none;
-  padding-left: 0;
   display: flex;
   gap: 1.5rem;
 }
 
-nav a {
-  color: #0056b3;
-  text-decoration: underline;
-  font-weight: 500;
-}
-
-nav a[aria-current="page"] {
-  color: #1a1a1a;
+.nav-links a {
+  color: var(--text-muted);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 500;
+  padding: 0.25rem 0;
+  transition: color 0.2s ease;
 }
 
-/* 7. Accessible Form Layout Components */
-.form-group {
-  margin-bottom: 1.25rem;
+.nav-links a:hover,
+.nav-links a[aria-current="page"] {
+  color: var(--color-accent);
+}
+
+.site-footer {
+  background-color: var(--bg-card);
+  border-top: 1px solid var(--line-border);
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: auto;
+}
+
+/* ==========================================================================
+   5. COMPONENT ELEMENTS (Hero, Forms, Interactive Buttons)
+   ========================================================================== */
+.hero-section {
+  padding: 3rem 0;
+}
+
+.hero-section h1 {
+  font-size: 2.5rem;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  max-width: 650px;
+}
+
+.cta-button, 
+.contact-form button {
+  display: inline-block;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--box-radius);
+  text-decoration: none;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cta-button:hover, 
+.contact-form button:hover {
+  background-color: var(--color-accent-hover);
+}
+
+/* Forms layout component configuration rules */
+.contact-form {
+  background-color: var(--bg-card);
+  border: 1px solid var(--line-border);
+  border-radius: var(--box-radius);
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
+  gap: 1.25rem;
 }
 
-label {
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
   font-weight: 600;
-  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
 }
 
-input[type="text"],
-input[type="email"],
-textarea {
-  padding: 0.5rem;
-  font-size: 1rem;
-  border: 1px solid #767676; /* Meets baseline default contrast ratios */
-  border-radius: 4px;
-  max-width: 500px;
+.form-group input, 
+.form-group textarea {
   width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--line-border);
+  border-radius: var(--box-radius);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 1rem;
 }
 
 .form-hint {
-  display: block;
-  font-size: 0.85rem;
-  color: #575757;
-  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
 }
 
-button[type="submit"] {
-  background-color: #0056b3;
-  color: #ffffff;
-  padding: 0.6rem 1.2rem;
-  font-size: 1rem;
+/* ==========================================================================
+   6. GRID PATTERNS & MEDIA QUERIES (Mobile-First Architecture)
+   ========================================================================== */
+.projects-section h2 {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Default Mobile Grid: Single-column stack layout */
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+.project-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--line-border);
+  border-radius: var(--box-radius);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column; /* Aligns card buttons seamlessly */
+  gap: 0.75rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.project-card p {
+  color: var(--text-muted);
+  flex-grow: 1; /* Pushes link down uniformly */
+}
+
+.card-link {
+  color: var(--color-accent);
+  text-decoration: none;
   font-weight: 600;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  align-self: flex-start;
 }
 
-button[type="submit"]:hover {
-  background-color: #004494;
+/* Tablet Viewports and Higher Screens (Breakpoints) */
+@media (min-width: 768px) {
+  .site-header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+  }
+
+  .hero-section h1 {
+    font-size: 3.5rem;
+  }
+
+  /* Two-Dimensional Grid transformation */
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
 }
