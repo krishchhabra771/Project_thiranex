@@ -4,20 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Jane Doe | Portfolio</title>
-  <meta name="description" content="Get in touch with Jane Doe for front-end web development opportunities and collaborations.">
+  <meta name="description" content="Get in touch with Jane Doe for front-end web development opportunities.">
   <link rel="canonical" href="https://janedoe.dev">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <header>
+  <header class="site-header">
     <div class="logo">
       <a href="index.html" aria-label="Jane Doe Portfolio Home">Jane Doe</a>
     </div>
     <nav aria-label="Main Navigation">
-      <ul>
+      <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#projects">Projects</a></li>
         <li><a href="contact.html" aria-current="page">Contact</a></li>
@@ -25,59 +25,34 @@
     </nav>
   </header>
 
-  <main id="main-content">
-    <section aria-labelledby="contact-heading">
+  <main id="main-content" class="container">
+    <section aria-labelledby="contact-heading" class="contact-section">
       <h1 id="contact-heading">Contact Me</h1>
-      <p>Have a project in mind? Fill out the form below, and I will get back to you within 24 hours.</p>
+      <p>Have a project in mind? Fill out the form below, and I will get back to you shortly.</p>
 
-      <!-- Tab-Navigable, Fully Accessible Form -->
-      <form action="#" method="POST" novalidate>
-        
+      <form action="#" method="POST" class="contact-form" novalidate>
         <div class="form-group">
-          <!-- Explicitly linked label using 'for' matching the input 'id' -->
           <label id="name-label" for="user-name">Full Name (Required)</label>
-          <input 
-            type="text" 
-            id="user-name" 
-            name="name" 
-            required 
-            autocomplete="name"
-            aria-required="true"
-            aria-labelledby="name-label">
+          <input type="text" id="user-name" name="name" required aria-required="true" aria-labelledby="name-label">
         </div>
 
         <div class="form-group">
           <label id="email-label" for="user-email">Email Address (Required)</label>
-          <input 
-            type="email" 
-            id="user-email" 
-            name="email" 
-            required 
-            autocomplete="email"
-            aria-required="true"
-            aria-labelledby="email-label"
-            aria-describedby="email-hint">
+          <input type="email" id="user-email" name="email" required aria-required="true" aria-labelledby="email-label" aria-describedby="email-hint">
           <span id="email-hint" class="form-hint">Format: name@example.com</span>
         </div>
 
         <div class="form-group">
           <label id="message-label" for="user-message">Your Message (Required)</label>
-          <textarea 
-            id="user-message" 
-            name="message" 
-            rows="5" 
-            required
-            aria-required="true"
-            aria-labelledby="message-label"></textarea>
+          <textarea id="user-message" name="message" rows="5" required aria-required="true" aria-labelledby="message-label"></textarea>
         </div>
 
-        <button type="submit" aria-label="Submit contact form">Send Message</button>
-
+        <button type="submit">Send Message</button>
       </form>
     </section>
   </main>
 
-  <footer>
+  <footer class="site-footer">
     <p>&copy; 2026 Jane Doe. All rights reserved.</p>
   </footer>
 
