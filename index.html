@@ -3,44 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  <!-- SEO Meta Tags -->
   <title>Jane Doe | Front-End Developer Portfolio</title>
-  <meta name="description" content="Professional portfolio of Jane Doe, a Front-End Developer specializing in accessible, semantic, and high-performance web applications.">
-  <meta name="robots" content="index, follow">
+  <meta name="description" content="Professional portfolio of Jane Doe, a Front-End Developer specializing in accessible, semantic, and responsive design.">
   <link rel="canonical" href="https://janedoe.dev">
-  <link rel="stylesheet" href="style.css">
-
-  
-  <!-- Open Graph / Facebook SEO -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Jane Doe | Front-End Developer Portfolio">
-  <meta property="og:description" content="Explore web development projects, skills, and contact information for Jane Doe.">
-  <meta property="og:url" content="https://janedoe.dev">
-  <meta property="og:image" content="https://janedoe.dev">
-  
-  <!-- Twitter SEO -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Jane Doe | Front-End Developer Portfolio">
-  <meta name="twitter:description" content="Explore web development projects and skills by Jane Doe.">
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- Skip Link for Keyboard Accessibility -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Header Section -->
-  <header>
+  <!-- Header Section with Flexbox Alignment Layout -->
+  <header class="site-header">
     <div class="logo">
       <a href="index.html" aria-label="Jane Doe Portfolio Home">Jane Doe</a>
     </div>
-    <!-- Navigation Landmarks -->
     <nav aria-label="Main Navigation">
-      <ul>
+      <ul class="nav-links">
         <li><a href="index.html" aria-current="page">Home</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="contact.html">Contact</a></li>
@@ -48,48 +26,44 @@
     </nav>
   </header>
 
-  <!-- Main Content Landmark -->
-  <main id="main-content">
+  <!-- Main Grid Frame -->
+  <main id="main-content" class="container">
     
     <!-- Hero / Introduction Section -->
-    <section aria-labelledby="hero-heading">
-      <h1 id="hero-heading">Building Accessible Digital Experiences</h1>
-      <p>Hi, I am Jane Doe. I am a front-end developer focused on semantic HTML and inclusive design.</p>
-      <a href="contact.html" class="cta-button">Work With Me</a>
+    <section aria-labelledby="hero-heading" class="hero-section">
+      <div class="hero-content">
+        <h1 id="hero-heading">Building Accessible Digital Experiences</h1>
+        <p>Hi, I am Jane Doe. I am a front-end developer focused on semantic HTML, modern layouts, and inclusive design principles.</p>
+        <a href="contact.html" class="cta-button">Work With Me</a>
+      </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" aria-labelledby="projects-heading">
+    <!-- Projects Section with 2D Grid Layout -->
+    <section id="projects" aria-labelledby="projects-heading" class="projects-section">
       <h2 id="projects-heading">Featured Projects</h2>
       
       <div class="projects-grid">
         <!-- Project Card 1 -->
-        <article>
+        <article class="project-card">
           <h3>E-Commerce Platform</h3>
-          <p>An inclusive e-commerce shopping experience built with accessibility at its core.</p>
-          <a href="https://github.com" aria-label="View E-Commerce Platform source code on GitHub" target="_blank" rel="noopener">View Code</a>
+          <p>An inclusive e-commerce shopping experience built with accessibility and deep responsive grids at its core.</p>
+          <a href="#" aria-label="View E-Commerce Platform source code" class="card-link">View Code &rarr;</a>
         </article>
 
         <!-- Project Card 2 -->
-        <article>
+        <article class="project-card">
           <h3>Task Management App</h3>
-          <p>A keyboard-navigable kanban board designed for screen reader efficiency.</p>
-          <a href="https://github.com" aria-label="View Task Management App source code on GitHub" target="_blank" rel="noopener">View Code</a>
+          <p>A keyboard-navigable kanban board designed fluidly for standard screen reader efficiency metrics.</p>
+          <a href="#" aria-label="View Task Management App source code" class="card-link">View Code &rarr;</a>
         </article>
       </div>
     </section>
 
   </main>
 
-  <!-- Footer Landmark -->
-  <footer>
+  <!-- Footer Layout Section -->
+  <footer class="site-footer">
     <p>&copy; 2026 Jane Doe. All rights reserved.</p>
-    <nav aria-label="Social Media Footer Links">
-      <ul>
-        <li><a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="Jane Doe on LinkedIn (opens in new tab)">LinkedIn</a></li>
-        <li><a href="https://github.com" target="_blank" rel="noopener" aria-label="Jane Doe on GitHub (opens in new tab)">GitHub</a></li>
-      </ul>
-    </nav>
   </footer>
 
 </body>
