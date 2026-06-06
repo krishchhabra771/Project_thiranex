@@ -283,3 +283,183 @@ textarea:focus-visible {
     gap: 2rem;
   }
 }
+/* ==========================================================================
+   TASK 3: TASK WORKSPACE ARCHITECTURE STYLES
+   ========================================================================== */
+.todo-section {
+  margin-top: 3rem;
+  border-top: 2px dashed var(--line-border);
+  padding-top: 3rem;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+/* Unique single row layout format */
+.form-group-row {
+  display: flex;
+  gap: 1rem;
+  max-width: 700px;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.form-group-fill {
+  flex-grow: 1;
+}
+
+.form-group-fill input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--line-border);
+  border-radius: var(--box-radius);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-size: 1rem;
+}
+
+/* Screen Reader Visibility Class Helper */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Filter controls structural rows alignment */
+.filter-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  background-color: var(--bg-card);
+  border: 1px solid var(--line-border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--box-radius);
+  color: var(--text-muted);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.active, 
+.filter-btn:hover {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+.todo-stats {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  align-self: flex-start;
+}
+
+/* Dynamic Item Rows Structures */
+.todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 700px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bg-card);
+  border: 1px solid var(--line-border);
+  padding: 1rem;
+  border-radius: var(--box-radius);
+  box-shadow: var(--shadow-sm);
+  animation: fadeIn 0.25s ease-out;
+}
+
+.todo-item-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-grow: 1;
+}
+
+.todo-checkbox {
+  width: 1.2rem;
+  height: 1.2rem;
+  cursor: pointer;
+  accent-color: var(--color-accent);
+}
+
+.todo-text {
+  font-weight: 500;
+  color: var(--text-main);
+  cursor: pointer;
+}
+
+/* Conditional strike-through formatting matching true state flags */
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: var(--text-muted);
+  opacity: 0.65;
+}
+
+.todo-item-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.todo-item-actions button {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: 1px solid var(--line-border);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  border-radius: var(--box-radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.todo-item-actions .edit-btn:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.todo-item-actions .delete-btn:hover {
+  background-color: #dc2626;
+  color: #ffffff;
+  border-color: #dc2626;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tablet Rescaling Layout Fixes */
+@media (min-width: 768px) {
+  .filter-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 700px;
+  }
+}
+
