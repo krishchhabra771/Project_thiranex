@@ -1,106 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jane Doe | Front-End Developer Portfolio</title>
-  <meta name="description" content="Professional portfolio of Jane Doe, a Front-End Developer specializing in accessible, semantic, and responsive design.">
-  <link rel="canonical" href="https://janedoe.dev">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio & Task Manager</title>
+    <meta name="description" content="Professional portfolio showcasing advanced frontend development skills, featuring an accessible, state-driven JavaScript To-Do application.">
+    <meta name="keywords" content="Frontend Developer, Portfolio, JavaScript, CSS Grid, Accessibility, WCAG, HTML5">
+    <meta name="author" content="Developer Name">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <a href="#main-content" class="skip-link">Skip to main content</a>
+    <!-- Accessibility Skip Link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Header Section with Flexbox Alignment Layout -->
-  <header class="site-header">
-    <div class="logo">
-      <a href="index.html" aria-label="Jane Doe Portfolio Home">Jane Doe</a>
-    </div>
-    <nav aria-label="Main Navigation">
-      <ul class="nav-links">
-        <li><a href="index.html" aria-current="page">Home</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Main Grid Frame -->
-  <main id="main-content" class="container">
-    
-    <!-- Hero / Introduction Section -->
-    <section aria-labelledby="hero-heading" class="hero-section">
-      <div class="hero-content">
-        <h1 id="hero-heading">Building Accessible Digital Experiences</h1>
-        <p>Hi, I am Jane Doe. I am a front-end developer focused on semantic HTML, modern layouts, and inclusive design principles.</p>
-        <a href="contact.html" class="cta-button">Work With Me</a>
-      </div>
-    </section>
-
-    <!-- Projects Section with 2D Grid Layout -->
-    <section id="projects" aria-labelledby="projects-heading" class="projects-section">
-      <h2 id="projects-heading">Featured Projects</h2>
-      
-      <div class="projects-grid">
-        <!-- Project Card 1 -->
-        <article class="project-card">
-          <h3>E-Commerce Platform</h3>
-          <p>An inclusive e-commerce shopping experience built with accessibility and deep responsive grids at its core.</p>
-          <a href="#" aria-label="View E-Commerce Platform source code" class="card-link">View Code &rarr;</a>
-        </article>
-
-        <!-- Project Card 2 -->
-        <article class="project-card">
-          <h3>Task Management App</h3>
-          <p>A keyboard-navigable kanban board designed fluidly for standard screen reader efficiency metrics.</p>
-          <a href="#" aria-label="View Task Management App source code" class="card-link">View Code &rarr;</a>
-        </article>
-      </div>
-    </section>
-        <!-- Task Management Section (Task 3 Addition) -->
-    <section id="todo-section" aria-labelledby="todo-heading" class="todo-section">
-      <h2 id="todo-heading">Project Task Workspace</h2>
-      <p class="section-desc">Manage project milestones. Your updates persist automatically in local storage.</p>
-
-      <!-- Form to Create Tasks -->
-      <form id="todo-form" class="todo-form" aria-label="Create a new task">
-        <div class="form-group-row">
-          <div class="form-group-fill">
-            <label for="todo-input" class="sr-only">Task Description</label>
-            <input 
-              type="text" 
-              id="todo-input" 
-              placeholder="e.g., Run Lighthouse accessibility audits..." 
-              required
-              aria-required="true">
-          </div>
-          <button type="submit" aria-label="Add task to your workspace">Add Task</button>
+    <!-- Header & Navigation -->
+    <header class="site-header">
+        <div class="header-container">
+            <span class="site-logo" aria-hidden="true">⚡ Krish Portfolio</span>
+            <nav aria-label="Main Navigation">
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode" aria-pressed="false">
+                <span class="mode-icon" aria-hidden="true">🌙</span>
+            </button>
         </div>
-      </form>
+    </header>
 
-      <!-- Advanced Filter Group -->
-      <div class="filter-wrapper">
-        <div class="filter-controls" role="group" aria-label="Filter tasks">
-          <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">All Tasks</button>
-          <button type="button" class="filter-btn" data-filter="active" aria-pressed="false">Active</button>
-          <button type="button" class="filter-btn" data-filter="completed" aria-pressed="false">Completed</button>
-        </div>
-        <!-- Accessibility Live Region for Screen Reader Announcements -->
-        <p id="todo-stats" class="todo-stats" aria-live="polite">0 active tasks remaining.</p>
-      </div>
+    <!-- Main Content Area -->
+    <main id="main-content">
 
-      <!-- Dynamic Destination Container for JavaScript Tasks -->
-      <ul id="todo-list" class="todo-list" aria-label="Current tasks workspace"></ul>
-    </section>
+        <!-- Hero / About Section -->
+        <section id="about" class="hero-section" aria-labelledby="about-heading">
+            <div class="hero-content">
+                <h1 id="about-heading">Hi, I'm a Frontend Engineer</h1>
+                <p>I build pixel-perfect, accessible, and highly performant web applications using modern web technologies.</p>
+            </div>
+        </section>
 
+        <!-- Projects Section (Task 3 App Integrated Here) -->
+        <section id="projects" class="projects-section" aria-labelledby="projects-heading">
+            <h2 id="projects-heading">Featured Project</h2>
+            <p class="section-subtitle">A fully functional, client-side state-driven application.</p>
 
-  </main>
+            <!-- To-Do Application Container -->
+            <div class="todo-app" role="region" aria-label="To-Do List Application">
+                <div class="todo-header">
+                    <h3>Interactive Task Manager</h3>
+                </div>
 
-  <!-- Footer Layout Section -->
-  <footer class="site-footer">
-    <p>&copy; 2026 Jane Doe. All rights reserved.</p>
-  </footer>
-    <script src="todo.js" defer></script>
+                <!-- Form to Add Tasks -->
+                <form id="todo-form" class="todo-form" aria-label="Add new task form">
+                    <div class="input-group">
+                        <label for="todo-input" class="sr-only">New Task Description</label>
+                        <input 
+                            type="text" 
+                            id="todo-input" 
+                            placeholder="What needs to be done?" 
+                            required
+                            autocomplete="off"
+                        >
+                        <button type="submit" aria-label="Add task">Add Task</button>
+                    </div>
+                </form>
+
+                <!-- Filter Controls -->
+                <div class="todo-controls">
+                    <span id="items-left" class="items-left" aria-live="polite">0 items left</span>
+                    <div class="filter-buttons" role="group" aria-label="Filter tasks">
+                        <button type="button" id="filter-all" class="filter-btn active" aria-pressed="true">All</button>
+                        <button type="button" id="filter-active" class="filter-btn" aria-pressed="false">Active</button>
+                        <button type="button" id="filter-completed" class="filter-btn" aria-pressed="false">Completed</button>
+                    </div>
+                </div>
+
+                <!-- Task List -->
+                <ul id="todo-list" class="todo-list" aria-label="List of tasks">
+                    <!-- Dynamic tasks will be inserted here via JS -->
+                </ul>
+            </div>
+        </section>
+
+        <!-- Accessible Contact Form Section -->
+        <section id="contact" class="contact-section" aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Get In Touch</h2>
+            <form class="contact-form" aria-label="Contact form">
+                <div class="form-field">
+                    <label for="contact-name">Name</label>
+                    <input type="text" id="contact-name" name="name" required autocomplete="name">
+                </div>
+                <div class="form-field">
+                    <label for="contact-email">Email</label>
+                    <input type="email" id="contact-email" name="email" required autocomplete="email">
+                </div>
+                <div class="form-field">
+                    <label for="contact-message">Message</label>
+                    <textarea id="contact-message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Developer Portfolio. Built with Accessibility in mind.</p>
+    </footer>
+
+    <script src="app.js"></script>
 </body>
 </html>
