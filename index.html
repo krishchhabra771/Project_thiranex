@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Portfolio & Task Manager</title>
-    <meta name="description" content="Professional portfolio showcasing advanced frontend development skills, featuring an accessible, state-driven JavaScript To-Do application.">
-    <meta name="keywords" content="Frontend Developer, Portfolio, JavaScript, CSS Grid, Accessibility, WCAG, HTML5">
+    <title>Developer Portfolio, Tasks & Weather Engine</title>
+    <meta name="description" content="Professional portfolio showcasing advanced frontend engineering skills, featuring an accessible To-Do system and an async real-time Weather Dashboard.">
+    <meta name="keywords" content="Frontend Developer, Portfolio, JavaScript, CSS Grid, Asynchronous JS, REST API, Accessibility, WCAG">
     <meta name="author" content="Developer Name">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -17,11 +17,12 @@
     <!-- Header & Navigation -->
     <header class="site-header">
         <div class="header-container">
-            <span class="site-logo" aria-hidden="true">⚡ Krish Portfolio</span>
+            <span class="site-logo" aria-hidden="true">⚡ DevPortfolio</span>
             <nav aria-label="Main Navigation">
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#projects">Task Manager</a></li>
+                    <li><a href="#weather">Weather Engine</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -34,41 +35,32 @@
     <!-- Main Content Area -->
     <main id="main-content">
 
-        <!-- Hero / About Section -->
+        <!-- Hero / About Section (Task 1 & 2) -->
         <section id="about" class="hero-section" aria-labelledby="about-heading">
             <div class="hero-content">
                 <h1 id="about-heading">Hi, I'm a Frontend Engineer</h1>
-                <p>I build pixel-perfect, accessible, and highly performant web applications using modern web technologies.</p>
+                <p>I build pixel-perfect, highly accessible, and state-driven web applications using modern web technology stacks.</p>
             </div>
         </section>
 
-        <!-- Projects Section (Task 3 App Integrated Here) -->
+        <!-- Task 3: Interactive To-Do Project Section -->
         <section id="projects" class="projects-section" aria-labelledby="projects-heading">
-            <h2 id="projects-heading">Featured Project</h2>
-            <p class="section-subtitle">A fully functional, client-side state-driven application.</p>
+            <h2 id="projects-heading">Interactive Task Manager</h2>
+            <p class="section-subtitle">A fully functional, client-side state-driven CRUD application.</p>
 
-            <!-- To-Do Application Container -->
             <div class="todo-app" role="region" aria-label="To-Do List Application">
                 <div class="todo-header">
-                    <h3>Interactive Task Manager</h3>
+                    <h3>Project Action Items</h3>
                 </div>
 
-                <!-- Form to Add Tasks -->
                 <form id="todo-form" class="todo-form" aria-label="Add new task form">
                     <div class="input-group">
                         <label for="todo-input" class="sr-only">New Task Description</label>
-                        <input 
-                            type="text" 
-                            id="todo-input" 
-                            placeholder="What needs to be done?" 
-                            required
-                            autocomplete="off"
-                        >
+                        <input type="text" id="todo-input" placeholder="What needs to be done?" required autocomplete="off">
                         <button type="submit" aria-label="Add task">Add Task</button>
                     </div>
                 </form>
 
-                <!-- Filter Controls -->
                 <div class="todo-controls">
                     <span id="items-left" class="items-left" aria-live="polite">0 items left</span>
                     <div class="filter-buttons" role="group" aria-label="Filter tasks">
@@ -78,14 +70,86 @@
                     </div>
                 </div>
 
-                <!-- Task List -->
                 <ul id="todo-list" class="todo-list" aria-label="List of tasks">
-                    <!-- Dynamic tasks will be inserted here via JS -->
+                    <!-- Loaded dynamically via JS -->
                 </ul>
             </div>
         </section>
 
-        <!-- Accessible Contact Form Section -->
+        <!-- Task 4: Asynchronous Real-Time Weather Dashboard Section -->
+        <section id="weather" class="weather-section" aria-labelledby="weather-heading">
+            <h2 id="weather-heading">Live Weather Dashboard</h2>
+            <p class="section-subtitle">Real-time asynchronous REST metric retrieval engine.</p>
+
+            <div class="weather-container">
+                <div class="weather-search-box">
+                    <form id="weather-form" class="weather-form" aria-label="City weather exploration form">
+                        <div class="input-group">
+                            <label for="weather-input" class="sr-only">Enter city name</label>
+                            <input type="text" id="weather-input" placeholder="Search city (e.g., London, New York, New Delhi)..." required autocomplete="off">
+                            <button type="submit" id="weather-submit" aria-label="Search target weather data">Get Weather</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Async Visual Wrapper Handlers -->
+                <div id="weather-loader" class="weather-loader hidden" aria-live="polite" aria-hidden="true">
+                    <div class="spinner"></div>
+                    <p>Fetching real-time dataset...</p>
+                </div>
+
+                <div id="weather-error" class="weather-error hidden" role="alert" aria-live="assertive">
+                    <span class="error-icon" aria-hidden="true">⚠️</span>
+                    <p id="error-message">Failed to process network transmission payload.</p>
+                </div>
+
+                <!-- Data Display Output Frame Component -->
+                <div id="weather-display" class="weather-display hidden" role="region" aria-label="Weather metrics results display window">
+                    <div class="weather-main-card">
+                        <h3 id="w-location" class="w-location">City Name, CC</h3>
+                        <div class="w-main-row">
+                            <span id="w-icon" class="w-icon" aria-hidden="true">☀️</span>
+                            <span id="w-temp" class="w-temp">--°C</span>
+                        </div>
+                        <p id="w-description" class="w-description">Clear Skies</p>
+                    </div>
+
+                    <!-- Complex Nested Grid Processing Array Layout Nodes -->
+                    <div class="weather-metrics-grid">
+                        <div class="metric-card">
+                            <span class="m-icon" aria-hidden="true">💧</span>
+                            <div class="m-info">
+                                <span class="m-label">Humidity</span>
+                                <span id="w-humidity" class="m-value">--%</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="m-icon" aria-hidden="true">💨</span>
+                            <div class="m-info">
+                                <span class="m-label">Wind Speed</span>
+                                <span id="w-wind" class="m-value">-- km/h</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="m-icon" aria-hidden="true">🧭</span>
+                            <div class="m-info">
+                                <span class="m-label">Wind Direction</span>
+                                <span id="w-direction" class="m-value">--°</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <span class="m-icon" aria-hidden="true">⛰️</span>
+                            <div class="m-info">
+                                <span class="m-label">Elevation</span>
+                                <span id="w-elevation" class="m-value">--m</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Accessible Contact Form Section (Task 1) -->
         <section id="contact" class="contact-section" aria-labelledby="contact-heading">
             <h2 id="contact-heading">Get In Touch</h2>
             <form class="contact-form" aria-label="Contact form">
@@ -109,7 +173,7 @@
 
     <!-- Footer -->
     <footer class="site-footer">
-        <p>&copy; 2026 Developer Portfolio. Built with Accessibility in mind.</p>
+        <p>&copy; 2026 Developer Portfolio. Built with Accessibility & Modern CSS Architecture.</p>
     </footer>
 
     <script src="app.js"></script>
