@@ -201,3 +201,131 @@ filterCompleted.addEventListener('click', () => setFilter('completed'));
 
 // Initial App Boot Mounting Loop 
 renderTodos();
+// ==========================================================================
+// Task 4: Weather Dashboard Async REST Engine (Fetch, Async/Await & JSON)
+// ==========================================================================
+
+const weatherForm = document.getElementById('weather-form');
+const weatherInput = document.getElementById('weather-input');
+const weatherLoader = document.getElementById('weather-loader');
+const weatherError = document.getElementById('weather-error');
+const weatherErrorMessage = document.getElementById('error-message');
+const weatherDisplay = document.getElementById('weather-display');
+
+// DOM Target Element Mappings for Metric Intersections
+const wLocation = document.getElementById('w-location');
+const wTemp = document.getElementById('w-temp');
+const wDescription = document.getElementById('w-description');
+const wHumidity = document.getElementById('w-humidity');
+const wWind = document.getElementById('w-wind');
+const wDirection = document.getElementById('w-direction');
+const wElevation = document.getElementById('w-elevation');
+
+// Weather Code Interpretation Mapping Array Object Dictionary
+const weatherCodes = {
+    0: { desc: 'Clear Skies', icon: '☀️' },
+    1: { desc: 'Mainly Clear', icon: '🌤️' },
+    2: { desc: 'Partly Cloudy', icon: '⛅' },
+    3: { desc: 'Overcast', icon: '☁️' },
+    45: { desc: 'Foggy Conditions', icon: '🌫️' },
+    48: { desc: 'Depositing Rime Fog', icon: '🌫️' },
+    51: { desc: 'Light Drizzle', icon: '🌧️' },
+    53: { desc: 'Moderate Drizzle', icon: '🌧️' },
+    55: { desc: 'Dense Drizzle', icon: '🌧️' },
+    61: { desc: 'Slight Rain', icon: '🌦️' },
+    63: { desc: 'Moderate Rain', icon: '🌧️' },
+    65: { desc: 'Heavy Rain', icon: '🌧️' },
+    71: { desc: 'Slight Snowfall', icon: '❄️' },
+    73: { desc: 'Moderate Snowfall', icon: '❄️' },
+    75: { desc: 'Heavy Snowfall', icon: '❄️' },
+    95: { desc: 'Thunderstorm', icon: '⛈️' }
+};
+
+// Event Handler Root Entry Point
+weatherForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const cityName = weatherInput.value.trim();
+    if (!cityName) return;
+
+    // Reset Component State Layout Pipeline Views
+    showWeatherLoader();
+    
+    try {
+        // Step A: Convert city name to Lat/Long using Geocoding API endpoint
+        const geoUrl = "https://open-meteo.com{encodeURIComponent(targetCity)}&count=1&language=en&format=json";
+
+        const geoResponse = await fetch(geoUrl);
+        if (!geoResponse.ok) {
+            throw new Error('Network communications error during location lookup pipeline.');
+        }
+
+        const geoData = await geoResponse.json();
+
+        // Error boundary validation for invalid city parameters 
+        if (!geoData.results || geoData.results.length === 0) {
+            throw new Error(`Could not locate "${cityName}". Check your spelling and try again.`);
+        }
+
+        // Parse individual elements from target JSON Object layout nodes
+        const { latitude, longitude, name, country, admin1 } = geoData.results[0];
+        const locationString = `${name}, ${admin1 ? admin1 + ', ' : ''}${country}`;
+
+        // Step B: Fetch weather using geographical parameters
+        const weatherUrl = `https://open-meteo.com{latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m&wind_speed_unit=kmh`;
+        const weatherResponse = await fetch(weatherUrl);
+
+        if (!weatherResponse.ok) {
+            throw new Error('Weather forecast engine returned a network transmission execution error.');
+        }
+
+        const weatherData = await weatherResponse.json();
+        
+        // Step C: Distribute data elements down through rendering system
+        renderWeatherData(weatherData, locationString);
+
+    } catch (error) {
+        // Catch block error logging routine
+        showWeatherError(error.message);
+    }
+});
+
+// UI State Visualization Helpers
+function showWeatherLoader() {
+    weatherLoader.classList.remove('hidden');
+    weatherError.classList.add('hidden');
+    weatherDisplay.classList.add('hidden');
+}
+
+function showWeatherError(message) {
+    weatherErrorMessage.textContent = message;
+    weatherError.classList.remove('hidden');
+    weatherLoader.classList.add('hidden');
+    weatherDisplay.classList.add('hidden');
+}
+
+// Complex Nested JSON Processing Engine Method (Task 4 Core Spec)
+function renderWeatherData(data, locationName) {
+    // Access deep nesting trees inside the data payload response mapping structure
+    const currentMetrics = data.current;
+    const weatherCode = currentMetrics.weather_code;
+    
+    // Fallback error-safety mapping layer check for unknown array response conditions
+    const condition = weatherCodes[weatherCode] || { desc: 'Unknown Conditions', icon: '🌍' };
+
+    // Update target text values in safety containers
+    wLocation.textContent = locationName;
+    wTemp.textContent = `${Math.round(currentMetrics.temperature_2m)}°C`;
+    wDescription.textContent = condition.desc;
+    document.getElementById('w-icon').textContent = condition.icon;
+
+    // Distribute remaining dynamic variables inside sub-grid node frames
+    wHumidity.textContent = `${currentMetrics.relative_humidity_2m}%`;
+    wWind.textContent = `${currentMetrics.wind_speed_10m} km/h`;
+    wDirection.textContent = `${currentMetrics.wind_direction_10m}°`;
+    wElevation.textContent = `${data.elevation}m`;
+
+    // Toggle active interface frames visually
+    weatherLoader.classList.add('hidden');
+    weatherDisplay.classList.remove('hidden');
+}
+
